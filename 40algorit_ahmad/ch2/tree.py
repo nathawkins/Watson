@@ -1,4 +1,40 @@
 class Node:
+    """
+    A class used to a Node in a tree
+
+    ...
+
+    Attributes
+    ----------
+    label : str
+        Label to associate with the Node
+    val : str, int, float
+        Optional. Data to associate to the Node
+    parent : Node
+        Parent of current Node
+    child : Node
+        Child of current Node
+
+    Methods
+    -------
+    getValue():
+        Returns value associated to current Node
+    setValue(val):
+        Set value of current Node
+    getLabel():
+        Get label of current Node
+    setLabel(label):
+        Set label of current Node
+    getParent():
+        Get Parent Node of current Node
+    setParent(Node):
+        Set Parent Node of current Node
+    getChild():
+        Get Child Node of current Node
+    setChild(Node):
+        Set Child Node of current Node. 
+        If multiple Child Nodes, multiple Nodes stored as a list object
+    """
     def __init__(self, label, val = None):
         self.label  = label
         self.val    = val
@@ -37,6 +73,32 @@ class Node:
 
 
 class Tree:
+    """
+    A class to represent a Tree data structure.
+
+    Attributes
+    ----------
+    nodes : list
+        List of Node objects
+    edges : list
+        List of edges between Node objects
+
+    Methods
+    -------
+    getNodes():
+        Get list of Node objects in tree
+    getEdges():
+        Get list of edges between Node objects. Edges
+        tracked using Node labels
+    getNode(label)
+        Get specific Node based on label
+    addNode(label, val):
+        Add Node to list of Node objects using label.
+        Optional, add value to Node using val
+    connectNode(parent: Node, child: Node):
+        Set parent Parent Node as parent to Child Node
+        using Node.setParent() and Node.setChild() methods.
+    """
     def __init__(self):
         self.nodes = []
         self.edges = []
