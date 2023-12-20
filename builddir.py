@@ -73,7 +73,8 @@ def initializeChildDirectory(author, title, description):
     with open(os.path.join(directory, 'README.md'), 'w') as f:
         f.write(f'# {title}\n\n')
         f.write(f"Author: {author}\n")
-        f.write(f"Description: {description}\n")
+        f.write(f"Description: {description}\n\n")
+        f.write(f"# Contents\n")
 
 
 # Main -----------------------------------------------------------------------------
