@@ -13,3 +13,9 @@ Description: Hone your problem-solving skills by learning different algorithms a
 - [Chapter 3](./ch3/): This chapter covers sorting and search algorithms.
   - [Searching Algorithms](./ch3/searches.py): Linear search, binary search, and interpolation sort
   - [Sorting Algorithms](./ch3/sorts.py): Bubble sort, insertion sort, merge sort, shell sort, selection sort, and quick sort
+- [Chapter 4](./ch4/): Algorithm design and implementation of some classic algorithms.
+  - [P vs. NP](./ch4/p_vs_np.md): Some notes on P vs. NP/NP-Hard/NP-Complete problems that I took from the chapter.
+  - [The Travelling Salesman Problem](./ch4/tsp.py): A basic implementation of a brute force and greedy search algorithm to "solve" the travelling salesman problem.
+  - [Page Rank](./ch4/pagerank.py): A basic implementation of the Page Rank algorithm using networkx.
+  - [Divide and Conquer](./ch4/divide_and_conquer.py): A basic implementation of a divide-and-conquer/MapReduce algorithm using pyspark.
+  - [Linear Programming](./ch4/capacity.py): An example implementation of linear programming to solve a constrained capacity planning system using `pulp`.
