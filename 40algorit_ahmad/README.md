@@ -19,3 +19,7 @@ Description: Hone your problem-solving skills by learning different algorithms a
   - [Page Rank](./ch4/pagerank.py): A basic implementation of the Page Rank algorithm using networkx.
   - [Divide and Conquer](./ch4/divide_and_conquer.py): A basic implementation of a divide-and-conquer/MapReduce algorithm using pyspark.
   - [Linear Programming](./ch4/capacity.py): An example implementation of linear programming to solve a constrained capacity planning system using `pulp`.
+- [Chapter 5](./ch5/): Introduction to graph-based algorithms.
+  - [Types of Centrality Measurements](./ch5/centralities.py): Calculation of four centrality measurements- degree, betweenness, closeness, and eigenvector. Verified calculations against standard networkx methods.
+  - [Network Searches](./ch5/searches.py): Breadth-first and depth-first searches applied to a simple network structure.
+  - [Fraud Detection Use Case Example](./ch5/gba.py): Predicting a node's risk for fraud based on its network connections. Solution includes a naive method that only looks at majority guilt-by-association and a more complex method based on centrality and external risk calculation.
