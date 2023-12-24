@@ -23,3 +23,6 @@ Description: Hone your problem-solving skills by learning different algorithms a
   - [Types of Centrality Measurements](./ch5/centralities.py): Calculation of four centrality measurements- degree, betweenness, closeness, and eigenvector. Verified calculations against standard networkx methods.
   - [Network Searches](./ch5/searches.py): Breadth-first and depth-first searches applied to a simple network structure.
   - [Fraud Detection Use Case Example](./ch5/gba.py): Predicting a node's risk for fraud based on its network connections. Solution includes a naive method that only looks at majority guilt-by-association and a more complex method based on centrality and external risk calculation.
+- [Chapter 6](./ch6/): Unsupervised machine learning methods.
+  - [Standard Distance Calculations](./ch6/distances.py): Calculation of euclidean, manhattan, and cosine distances in python. Developed to be used in distance-based methods (i.e., clustering) in this chapter.
+  - [KMeans Clustering](./ch6/clustering.py): KMeans clustering implementation. The chapter also covers hierarchical clustering but doesn't go into detail on the methodology.
