@@ -130,6 +130,92 @@ class KMeans:
         return self.centroids
 
 
+class HierarchicalClustering:
+    """
+    Hierarchical clustering implemented in python.
+    """
+    def __init__(self, 
+                 k = 1,
+                 h = None,
+                 linkage = 'average', 
+                 distance = euclideanDistance):
+        '''
+        Initialize the hierarchical clustering algorithm.
+        
+        Parameters
+        ----------
+        - k (int): Number of clusters to halt execution at. Default 1 (root node)
+        - h (float): Halt execution at specified height. Default None (not used)
+        - linkage (str): Methodology to use when calculating linkage. Default 'average'
+        - distance (method): Function to use for calculating distance. Default euclideanDistance().
+        '''
+        self.linkage   = self.linkage_function(linkage)
+        self.distance  = distance
+        self.precision = 5
+        self.k         = k
+        self.h         = h
+        
+        self.data = None
+
+    def linkage_function(self, linkage):
+        '''
+        Calculate linkage.
+
+        Parameters
+        ----------
+        - linkage (str): Method to use when calculating linkage. Default 'average'
+            for average linkage. Support methods include: average.
+
+        Returns
+        -------
+        - function: Function to calculate the linkage between clusters
+        '''
+        if linkage == 'average':
+            return lambda cluster_I, cluster_J: sum(self.distance(sample_i, sample_j) for sample_i in cluster_I for sample_j in cluster_J)/(len(cluster_I) * len(cluster_J))
+        
+    def fit(self, data):
+        '''
+        Fit clustering algorithm using input data.
+
+        Parameters
+        ----------
+        - data (iterable): Iterable of shape (n_sample, n_features) to fit clustering algorithm
+        '''
+        # Define input data and data shapes
+        self.data = data
+
+        # Start with every sample in its own cluster
+        self.clusters = [[sample_] for sample_ in self.data]
+
+        # Iterate until everything belongs to a single cluster (root)
+        while len(self.clusters) > self.k:
+            # Find the two clusters with the minimum distance between them
+            minimum_distance = 1e30
+
+            # Identify the clusters to merge together
+            clusters_to_combine = []
+
+            # Iterate through samples (pairwise iteration)
+            for i in range(len(self.clusters)):
+                # Calculate 'upper diagonal' only
+                for j in range(i+1, len(self.clusters)):
+                    cluster_linkage = self.linkage(self.clusters[i], self.clusters[j])
+
+                    # Identify minimum linkage
+                    if cluster_linkage < minimum_distance:
+                        minimum_distance = cluster_linkage
+                        clusters_to_combine = [i,j]
+
+            # Merge closest clusters based on minimum distance
+            self.clusters[clusters_to_combine[0]].extend(self.clusters[clusters_to_combine[1]])
+
+            # Remove duplicate cluster
+            self.clusters.pop(clusters_to_combine[1])
+
+
+
+
+
 # Main -------------------------------------------------------------------------
 def main():
     # Initialize dataset
@@ -137,27 +223,38 @@ def main():
 55, 61, 62, 70, 72, 10], [39, 36, 30, 52, 53, 46, 55, 59, 63, 70, 66, 63, 58, 23,
 14, 8, 18, 7, 24, 10])]
     
+    # Initialize Hierarchical Clustering
+    hc = HierarchicalClustering()
+
+    # Fit clustering
+    hc.fit(X)
+
+    print(hc.clusters)
+
+    # --------
+    
     # Initialize KMeans
-    kmeans = KMeans(k = 3)
+    # kmeans = KMeans(k = 3)
 
     # Fit
-    kmeans.fit(X)
+    # kmeans.fit(X)
 
     # Predict cluster assignment for new data
-    new_data = [[20, 45],
-                [30, 60],
-                [50, 10],
-                [70, 70],
-                [55, 70],
-                [65, 12]]
-    new_data2 = [25, 25]
+    # new_data = [[20, 45],
+    #             [30, 60],
+    #             [50, 10],
+    #             [70, 70],
+    #             [55, 70],
+    #             [65, 12]]
+    # new_data2 = [25, 25]
 
-    print(kmeans.predict(new_data))
-    print(kmeans.predict(new_data2))
+    # print(kmeans.predict(new_data))
+    # print(kmeans.predict(new_data2))
 
     # Visualize
-    kmeans.plot()
+    # kmeans.plot()
 
 
 if __name__ == '__main__':
     main()
+    
